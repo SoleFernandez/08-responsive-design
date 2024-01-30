@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.section {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu {
+    background-color: #5995da;
+    height: 80px;
+}
+
+.header {
+    background-color: #b2d6ff;
+}
+
+.content {
+    background-color: #eaedf0;
+    height: 600px;
+}
+
+.sign-up {
+    background-color: #d6e9fe;
+}
+
+.feature-1 {
+    background-color: #f5cf8e;
+}
+
+.feature-2 {
+    background-color: #f09a9d;
+}
+
+.feature-3 {
+    background-color: #c8c6fa;
+}
+
+.header {
+    height: auto;
+    justify-content: inherit;
+    align-items: inherit;
+}
+
+.photo img {
+    width: 100%;
+    display: block;
+}
+
+
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+    body {
+        background-color: #f09a9d;
+    }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+    .sign-up,
+    .feature-1,
+    .feature-2,
+    .feature-3 {
+        width: 50%;
+    }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+    .page {
+        width: 960px;
+        margin: 0 auto;
+    }
+
+    .feature-1,
+    .feature-2,
+    .feature-3 {
+        width: 33.3%;
+    }
+
+    .header {
+        height: 400px;
+    }
+
+    .sign-up {
+        height: 200px;
+        order: 1;
+    }
+
+    .content {
+        order: 2;
+    }
+}
+
+/* Media queries always begin with the @media “at-rule” followed by some kind of conditional statement, and then some curly braces. Inside the curly braces, you put a bunch of ordinary CSS rules. The browser only pays attention to those rules if the condition is met. */
+
+/* The only screen “media type” means that the contained styles should only be applied to devices with screens (opposed to printed documents, like when you hit Cmd+P in a browser). The min-width and max-width parts are called “media features”, and they specify the device dimensions you’re targeting. */
+
+/* There are two concepts that you must understand as a developer:
+
+* A “fluid” layout is one that stretches and shrinks to fill the width of the screen.
+
+* A “fixed-width” layout is the opposite: it has the same width regardless of the screen dimensions. */
+
+
+
+/* Start with the base styles that apply to your entire site, then tweak them for various device widths by selectively applying CSS rules with @media. You could even add another media query to, say, create a dedicated layout for ultra-widescreen monitors. */
+
+/* We’re really only concerned with three things:
+
+* The responsive design (the mockups for each layout)
+* CSS rules for implementing each of those layouts
+* Media queries for conditionally applying those CSS rules */
+
+
+
+
+/* To make our images responsive, we now have to take three things into consideration:
+
+* The device’s dimensions
+* The image’s dimensions
+* The device’s screen resolution */
+
+/* RETINA SCREENS */
+
+/* Retina screens have twice as many pixels per inch than standard-resolution screens.
+
+To render correctly on a retina device, an image needs to be twice as big as its final display dimensions.
+
+This tutorial focuses on the 2x use case, but the same techniques apply to 3x retina screens as well.
+
+What’s more, standard displays and smaller devices don’t need all those extra pixels in high-resolution images, and sending that much unnecessary data usually results in a bad user experience.
+The easiest way to solve all these problems is with SVG images.*/
+.illustration img {
+    /* To get a fluid image in Chrome, we need to tell the illustration to always fill the width of its container. */
+    width: 100%;
+
+    /* We changed around the HTML structure a bit, nesting our <img/> tag in another container. Without it, the image would get distorted because flexbox would try to set its height to be the same as the .content container. */
+    display: block;
+}

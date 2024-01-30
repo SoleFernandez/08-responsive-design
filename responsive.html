@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+
+    <!-- To cope with this, they zoomed out to fit the entire desktop layout into the width of the screen, letting the user interact with it by zooming in when necessary. -->
+
+    <!-- This default behavior will prevent mobile devices from using our mobile layout, which is obviously very terrible. To disable it, add the following element to the <head> of our document. -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0" />
+
+
+    <title>Responsive Design</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="section menu"></div>
+        <div class="section header">
+            <div class="photo">
+                <picture>
+                    <source media="(min-width: 401px)" srcset="images/photo-big.jpg" />
+                    <source media="(max-width: 400px)" srcset="images/photo-tall.jpg">
+                    <img src="images/photo-small.jpg" />
+                    <!-- <img src="images/photo-small.jpg" srcset="images/photo-big.jpg 2000w,
+                images/photo-small.jpg 1000w" sizes="(min-width: 960px) 960px,
+                100vw" /> -->
+                </picture>
+
+                <!-- Conceptually, this is pretty similar to using media queries in CSS. In each <source> element, the media attribute defines when the image should be loaded, and srcset defines which image file should be loaded. The <img/> element is only used as a fallback for older browsers. -->
+
+
+                <!-- While it is possible to combine the best of both worlds, it gets complicated real quick. Our recommendation is to stick to the 1x and 2x version of srcset for images less than 600 pixels wide, use the srcset plus sizes method from the previous section for bigger photos, and reserve <picture> for when you’re trying to do something real fancy with your designer. -->
+            </div>
+            <!-- We have the same srcset element as the last section, but instead of the 1x and 2x descriptors, we’re providing the inherent physical width of the image. The 2000w tells the browser that the photo-big.jpg file is 2000 pixels wide. Likewise, the 1000w means photo-small.jpg has a width of 1000 pixels. If you’re wondering about that w character, it’s a special unit used only for this kind of image optimization scenario. 
+            
+            Image width alone isn’t enough for a device to determine which image it should load. We also need to tell it what the final rendered width of the image will be. That’s where the sizes attribute comes in. It defines a series of media queries along with the image’s rendered width when that media query is in effect.
+        
+            Here, we’re saying that when the screen is at least 960px wide, the image will also be 960 pixels wide. Otherwise, the 100vw default value tells the browser that the image’s width will be 100% of the “viewport width” (a fancy term for screen width).-->
+
+
+        </div>
+        <div class="section content">
+            <div class="illustration">
+                <!-- Adding a srcset attribute to our <img/> element lets us present our high-resolution image only to retina devices, falling back to the low-resolution version for standard screens. -->
+                <img src="images/illustration-small.png" srcset="images/illustration-small.png 1x, 
+            images/illustration-big.png 2x" style="max-width: 500px;" />
+            </div>
+        </div>
+        <!-- Browsers automatically scale up SVGs for retina devices, so this 500×250 pixel SVG image will render crisply on both standard and retina devices.
+            
+            This is one of the rare times an inline style is acceptable, due to the fact that it’s describing an innate property of the image. An image’s physical dimensions are more content than presentation, so it makes sense for this to appear in the HTML rather than the stylesheet.-->
+
+        <!-- Sometimes you need to include a photo. PNG, GIF, and JPG images are “raster images”, meaning that they are defined pixel-by-pixel instead of with vectors. As a result, they are much more sensitive to screen resolution than SVGs. -->
+
+        <!-- The srcset attribute points to a list of alternative image files, along with properties defining when the browser should use each of them. The 1x tells the browser to display illustration-small.png on standard-resolution screens. The 2x means that illustration-big.png is for retina screens. Older browsers that don’t understand srcset fall back to the src attribute. -->
+
+        <div class="section sign-up"><img src="images/sign-up.svg" /></div>
+        <div class="section feature-1"><img src="images/feature.svg" /></div>
+        <div class="section feature-2"><img src="images/feature.svg" /></div>
+        <div class="section feature-3"><img src="images/feature.svg" /></div>
+    </div>
+</body>
+
+</html>
